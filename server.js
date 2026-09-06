@@ -10,7 +10,7 @@ app.use(express.static("public"));
 function collectUrls(value,pathParts=[],out=[]){
  if(value&&typeof value==="object") for(const [k,v] of Object.entries(value)){
   const p=[...pathParts,k];
-  if(typeof v==="string"&&/^https?:\\/\\//i.test(v)) out.push({key:k,path:p.join("."),url:v});
+  if(typeof v==="string"&&/^https?:\/\//i.test(v)) out.push({key:k,path:p.join("."),url:v});
   else if(v&&typeof v==="object") collectUrls(v,p,out);
  } return out;
 }
@@ -33,5 +33,5 @@ app.post("/api/download",async(req,res)=>{
   res.json({title:data.title||"Facebook Video",thumbnail:data.thumbnail||"",formats});
  }catch(e){console.error(e);res.status(500).json({error:"Server error while processing the video."})}
 });
-app.get("*",(req,res)=>res.sendFile(path.join(__dirname,"public","index.html")));
+app.get("/{*splat}",(req,res)=>res.sendFile(path.join(__dirname,"public","index.html")));
 app.listen(PORT,()=>console.log(`AURA LABIB running on port ${PORT}`));
