@@ -1,6 +1,6 @@
 {
   "name": "aura-labib-facebook-downloader",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
     "start": "node server.js"
@@ -9,6 +9,6 @@
     "node": ">=18"
   },
   "dependencies": {
-    "express": "^5.1.0"
+    "express": "^4.21.2"
   }
 }
